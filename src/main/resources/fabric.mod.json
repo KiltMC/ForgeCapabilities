@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "forgecapabilities",
+  "version": "${version}",
+  "name": "Forge Capabilities",
+  "description": "Direct port of Forge's Capabilities system to Fabric to make my life easier.",
+  "mixins": [
+    "forgecapabilities.mixins.json"
+  ],
+  "entrypoints": {
+    "main": [
+      "xyz.bluspring.forgecapabilities.capabilities.ForgeCapabilities"
+    ]
+  },
+  "custom": {
+    "loom:injected_interfaces": {
+      "net/minecraft/class_1799": [
+        "xyz/bluspring/forgecapabilities/extensions/capabilities/CapabilityProviderExtension",
+        "xyz/bluspring/forgecapabilities/extensions/capabilities/ItemStackCapabilityProviderImpl"
+      ],
+      "net/minecraft/class_1297": [
+        "xyz/bluspring/forgecapabilities/extensions/capabilities/CapabilityProviderExtension",
+        "xyz/bluspring/forgecapabilities/extensions/capabilities/EntityCapabilityProviderImpl"
+      ],
+      "net/minecraft/class_2586": [
+        "xyz/bluspring/forgecapabilities/extensions/capabilities/CapabilityProviderExtension",
+        "xyz/bluspring/forgecapabilities/extensions/capabilities/BlockEntityCapabilityProviderImpl"
+      ],
+      "net/minecraft/class_1937": [
+        "xyz/bluspring/forgecapabilities/extensions/capabilities/CapabilityProviderExtension",
+        "xyz/bluspring/forgecapabilities/extensions/capabilities/LevelCapabilityProviderImpl"
+      ],
+      "net/minecraft/class_3218": [
+        "xyz/bluspring/forgecapabilities/extensions/capabilities/InitializableCapabilityExtension"
+      ],
+      "net/minecraft/class_1792": [
+        "xyz/bluspring/forgecapabilities/extensions/capabilities/ItemCapabilityExtension"
+      ]
+    }
+  },
+  "depends": {
+    "fabric-api": "*",
+    "porting_lib": "*"
+  }
+}
