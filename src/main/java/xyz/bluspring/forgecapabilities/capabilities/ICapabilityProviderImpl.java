@@ -6,8 +6,19 @@ import org.jetbrains.annotations.Nullable;
 @ApiStatus.Internal // Modders should use ICapabilityProvider, this is for Forge
 public interface ICapabilityProviderImpl<B extends ICapabilityProviderImpl<B>> extends ICapabilityProvider
 {
-    boolean areCapsCompatible(CapabilityProvider<B> other);
-    boolean areCapsCompatible(@Nullable CapabilityDispatcher other);
-    void invalidateCaps();
-    void reviveCaps();
+    default boolean areCapsCompatible(CapabilityProvider<B> other) {
+        throw new IllegalStateException("mixin didn't touch this?");
+    }
+    
+    default boolean areCapsCompatible(@Nullable CapabilityDispatcher other) {
+        throw new IllegalStateException("mixin didn't touch this?");
+    }
+
+    default void invalidateCaps() {
+        throw new IllegalStateException("mixin didn't touch this?");
+    }
+
+    default void reviveCaps() {
+        throw new IllegalStateException("mixin didn't touch this?");
+    }
 }
