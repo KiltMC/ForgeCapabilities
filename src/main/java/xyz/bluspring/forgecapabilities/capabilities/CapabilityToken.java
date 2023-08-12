@@ -26,20 +26,27 @@ import java.util.UUID;
  */
 public abstract class CapabilityToken<T>
 {
+    private String typeName;
+
     protected final String getType()
     {
+        if (typeName != null)
+            return typeName;
+
 		// Gets the type name of the generic.
         var type = (this.getClass().getGenericSuperclass());
 
         try {
             if (type instanceof ParameterizedType paramType)
-                return Type.getInternalName((Class<T>) paramType.getActualTypeArguments()[0]);
+                typeName = Type.getInternalName((Class<T>) paramType.getActualTypeArguments()[0]);
             else if (type instanceof Class<?> clazz)
-                return Type.getInternalName(clazz);
+                typeName = Type.getInternalName(clazz);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "unknown_type_" + UUID.randomUUID().toString().replace("-", "");
+        typeName = "unknown_type_" + UUID.randomUUID().toString().replace("-", "");
+
+        return typeName;
     }
 
     @Override
