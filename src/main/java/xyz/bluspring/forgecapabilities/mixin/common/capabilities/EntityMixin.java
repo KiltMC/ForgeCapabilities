@@ -23,6 +23,11 @@ public abstract class EntityMixin implements CapabilityProviderExtension, Entity
 	}
 
 	@Override
+	public @Nullable CapabilityDispatcher getCapabilities() {
+		return workaround.invokeGetCapabilities();
+	}
+
+	@Override
 	public CapabilityProviderWorkaround<Entity> port_lib$getWorkaround() {
 		return workaround;
 	}

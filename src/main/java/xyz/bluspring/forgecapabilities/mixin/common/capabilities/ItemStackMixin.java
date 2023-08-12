@@ -36,6 +36,11 @@ public abstract class ItemStackMixin implements CapabilityProviderExtension, Ite
 	}
 
 	@Override
+	public @Nullable CapabilityDispatcher getCapabilities() {
+		return workaround.invokeGetCapabilities();
+	}
+
+	@Override
 	public CapabilityProviderWorkaround<ItemStack> port_lib$getWorkaround() {
 		return workaround;
 	}

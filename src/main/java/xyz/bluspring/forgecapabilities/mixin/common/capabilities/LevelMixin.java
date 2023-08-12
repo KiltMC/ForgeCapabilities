@@ -23,6 +23,11 @@ public abstract class LevelMixin implements CapabilityProviderExtension, LevelCa
 	}
 
 	@Override
+	public @Nullable CapabilityDispatcher getCapabilities() {
+		return workaround.invokeGetCapabilities();
+	}
+
+	@Override
 	public CapabilityProviderWorkaround<Level> port_lib$getWorkaround() {
 		return workaround;
 	}

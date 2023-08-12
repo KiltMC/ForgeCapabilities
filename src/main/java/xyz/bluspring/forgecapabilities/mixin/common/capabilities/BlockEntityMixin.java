@@ -23,6 +23,11 @@ public abstract class BlockEntityMixin implements CapabilityProviderExtension, B
 	}
 
 	@Override
+	public @Nullable CapabilityDispatcher getCapabilities() {
+		return workaround.invokeGetCapabilities();
+	}
+
+	@Override
 	public CapabilityProviderWorkaround<BlockEntity> port_lib$getWorkaround() {
 		return workaround;
 	}
