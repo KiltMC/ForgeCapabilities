@@ -8,6 +8,7 @@ package xyz.bluspring.forgecapabilities.capabilities;
 import org.objectweb.asm.Type;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.UUID;
 
 /**
  * Inspired by {@link com.google.common.reflect.TypeToken TypeToken}, use a subclass to capture
@@ -28,8 +29,17 @@ public abstract class CapabilityToken<T>
     protected final String getType()
     {
 		// Gets the type name of the generic.
-        var type = (ParameterizedType) this.getClass().getGenericSuperclass();
-        return Type.getInternalName((Class<T>) type.getActualTypeArguments()[0]);
+        var type = (this.getClass().getGenericSuperclass());
+
+        try {
+            if (type instanceof ParameterizedType paramType)
+                return Type.getInternalName((Class<T>) paramType.getActualTypeArguments()[0]);
+            else if (type instanceof Class<?> clazz)
+                return Type.getInternalName(clazz);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "unknown_type_" + UUID.randomUUID().toString().replace("-", "");
     }
 
     @Override
