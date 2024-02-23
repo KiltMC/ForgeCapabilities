@@ -1,6 +1,6 @@
 package xyz.bluspring.forgecapabilities.mixin.common.capabilities;
 
-import io.github.fabricators_of_create.porting_lib.extensions.ItemStackExtensions;
+import io.github.fabricators_of_create.porting_lib.extensions.extensions.ItemStackExtensions;
 import io.github.fabricators_of_create.porting_lib.util.LazyOptional;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -22,7 +22,7 @@ import xyz.bluspring.forgecapabilities.extensions.capabilities.ItemStackCapabili
 import java.util.function.Supplier;
 
 @Mixin(ItemStack.class)
-public abstract class ItemStackMixin implements CapabilityProviderExtension, ItemStackCapabilityProviderImpl, ItemStackExtensions, InitializableCapabilityExtension<ItemStack> {
+public abstract class ItemStackMixin implements CapabilityProviderExtension, ItemStackCapabilityProviderImpl, ItemStackExtensions, io.github.fabricators_of_create.porting_lib.tool.extensions.ItemStackExtensions, InitializableCapabilityExtension<ItemStack> {
 	@Shadow
 	public abstract Item getItem();
 

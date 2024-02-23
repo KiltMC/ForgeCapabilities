@@ -2,7 +2,7 @@ package xyz.bluspring.forgecapabilities.capabilities.impl;
 
 import io.github.fabricators_of_create.porting_lib.transfer.item.ItemHandlerHelper;
 import io.github.fabricators_of_create.porting_lib.transfer.item.ItemStackHandlerContainer;
-import io.github.fabricators_of_create.porting_lib.transfer.item.SlotExposedStorage;
+import io.github.fabricators_of_create.porting_lib.transfer.item.SlottedStackStorage;
 import io.github.fabricators_of_create.porting_lib.util.LazyOptional;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
@@ -51,7 +51,7 @@ public class ShulkerItemStackInvWrapper extends ItemStackHandlerContainer implem
     }
 
     private final ItemStack stack;
-    private final LazyOptional<SlotExposedStorage> holder = LazyOptional.of(() -> this);
+    private final LazyOptional<SlottedStackStorage> holder = LazyOptional.of(() -> this);
 
     private CompoundTag cachedTag;
     private NonNullList<ItemStack> itemStacksCache;
@@ -63,7 +63,7 @@ public class ShulkerItemStackInvWrapper extends ItemStackHandlerContainer implem
     }
 
     @Override
-    public int getSlots()
+    public int getSlotCount()
     {
         return 27;
     }
@@ -175,7 +175,7 @@ public class ShulkerItemStackInvWrapper extends ItemStackHandlerContainer implem
 
     private void validateSlotIndex(int slot)
     {
-        if (slot < 0 || slot >= getSlots())
+        if (slot < 0 || slot >= getSlotCount())
             throw new RuntimeException("Slot " + slot + " not in valid range - [0," + getSlots() + ")");
     }
 
@@ -186,8 +186,8 @@ public class ShulkerItemStackInvWrapper extends ItemStackHandlerContainer implem
     }
 
     @Override
-    public boolean isItemValid(int slot, ItemVariant resource, long amount) {
-        return isItemValid(slot, resource.toStack((int) amount));
+    public boolean isItemValid(int slot, ItemVariant resource, int amount) {
+        return isItemValid(slot, resource.toStack(amount));
     }
 
     public boolean isItemValid(int slot, @NotNull ItemStack stack)
@@ -215,7 +215,7 @@ public class ShulkerItemStackInvWrapper extends ItemStackHandlerContainer implem
 
     private NonNullList<ItemStack> refreshItemList(CompoundTag rootTag)
     {
-        NonNullList<ItemStack> itemStacks = NonNullList.withSize(getSlots(), ItemStack.EMPTY);
+        NonNullList<ItemStack> itemStacks = NonNullList.withSize(getSlotCount(), ItemStack.EMPTY);
         if (rootTag != null && rootTag.contains("Items", CompoundTag.TAG_LIST))
         {
             ContainerHelper.loadAllItems(rootTag, itemStacks);

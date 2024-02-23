@@ -1,7 +1,7 @@
 package xyz.bluspring.forgecapabilities.capabilities;
 
 import com.google.common.collect.Lists;
-import io.github.fabricators_of_create.porting_lib.extensions.INBTSerializable;
+import io.github.fabricators_of_create.porting_lib.core.util.INBTSerializable;
 import io.github.fabricators_of_create.porting_lib.util.LazyOptional;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Direction;

@@ -1,6 +1,6 @@
 package xyz.bluspring.forgecapabilities.capabilities;
 
-import io.github.fabricators_of_create.porting_lib.extensions.INBTSerializable;
+import io.github.fabricators_of_create.porting_lib.core.util.INBTSerializable;
 import net.minecraft.nbt.Tag;
 
 //Just a mix of the two, useful in patches to lower the size.

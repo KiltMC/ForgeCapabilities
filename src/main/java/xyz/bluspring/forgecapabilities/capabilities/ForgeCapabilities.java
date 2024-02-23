@@ -1,6 +1,6 @@
 package xyz.bluspring.forgecapabilities.capabilities;
 
-import io.github.fabricators_of_create.porting_lib.transfer.item.SlotExposedStorage;
+import io.github.fabricators_of_create.porting_lib.transfer.item.SlottedStackStorage;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
@@ -11,7 +11,7 @@ public class ForgeCapabilities implements ModInitializer {
 	//		 Right now, they are only matching to what their equivalent transfer API uses.
 	public static final Capability<Storage<FluidVariant>> FLUID_HANDLER = CapabilityManager.get(new CapabilityToken<>(){});
 	public static final Capability<SingleSlotStorage<FluidVariant>> FLUID_HANDLER_ITEM = CapabilityManager.get(new CapabilityToken<>(){});
-	public static final Capability<SlotExposedStorage> ITEM_HANDLER = CapabilityManager.get(new CapabilityToken<>(){});
+	public static final Capability<SlottedStackStorage> ITEM_HANDLER = CapabilityManager.get(new CapabilityToken<>(){});
 
 	@Override
 	public void onInitialize() {

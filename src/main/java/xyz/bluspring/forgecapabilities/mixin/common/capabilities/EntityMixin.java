@@ -1,6 +1,6 @@
 package xyz.bluspring.forgecapabilities.mixin.common.capabilities;
 
-import io.github.fabricators_of_create.porting_lib.extensions.EntityExtensions;
+import io.github.fabricators_of_create.porting_lib.entity.extensions.EntityExtensions;
 import io.github.fabricators_of_create.porting_lib.util.LazyOptional;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;

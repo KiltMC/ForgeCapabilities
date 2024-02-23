@@ -1,6 +1,6 @@
 package xyz.bluspring.forgecapabilities.mixin.common.capabilities;
 
-import io.github.fabricators_of_create.porting_lib.extensions.LevelExtensions;
+import io.github.fabricators_of_create.porting_lib.extensions.extensions.LevelExtensions;
 import io.github.fabricators_of_create.porting_lib.util.LazyOptional;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
@@ -14,7 +14,7 @@ import xyz.bluspring.forgecapabilities.extensions.capabilities.LevelCapabilityPr
 import java.util.function.Supplier;
 
 @Mixin(Level.class)
-public abstract class LevelMixin implements CapabilityProviderExtension, LevelCapabilityProviderImpl, LevelExtensions {
+public abstract class LevelMixin implements CapabilityProviderExtension, LevelCapabilityProviderImpl, LevelExtensions, io.github.fabricators_of_create.porting_lib.entity.extensions.LevelExtensions {
 	private final CapabilityProviderWorkaround<Level> workaround = new CapabilityProviderWorkaround<>(Level.class, (Level) (Object) this);
 
 	@Override
