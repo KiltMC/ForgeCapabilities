@@ -7,6 +7,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import xyz.bluspring.forgecapabilities.capabilities.*;
 import xyz.bluspring.forgecapabilities.extensions.capabilities.BlockEntityCapabilityProviderImpl;
 import xyz.bluspring.forgecapabilities.extensions.capabilities.CapabilityProviderExtension;
@@ -15,6 +16,7 @@ import java.util.function.Supplier;
 
 @Mixin(BlockEntity.class)
 public abstract class BlockEntityMixin implements CapabilityProviderExtension, BlockEntityCapabilityProviderImpl, BlockEntityExtensions {
+	@Unique
 	private final CapabilityProviderWorkaround<BlockEntity> workaround = new CapabilityProviderWorkaround<>(BlockEntity.class, (BlockEntity) (Object) this);
 
 	@Override
