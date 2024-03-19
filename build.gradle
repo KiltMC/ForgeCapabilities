@@ -15,7 +15,7 @@ repositories {
 
     maven {
         name = "DevOS One"
-        url = ("https://mvn.devos.one/snapshots/")
+        url = ("https://mvn.devos.one/releases/")
     }
 
     maven {
@@ -48,7 +48,14 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    modImplementation("io.github.fabricators_of_create.Porting-Lib:Porting-Lib:2.1.1232+1.20.1")
+
+    for (module in ["transfer", "base", "utility"]) {
+        modImplementation("io.github.fabricators_of_create.Porting-Lib:${module}:2.3.0+1.20.1")
+    }
+
+    include modApi('teamreborn:energy:3.0.0') {
+        transitive = false
+    }
 }
 
 processResources {

@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -22,13 +23,13 @@ import xyz.bluspring.forgecapabilities.extensions.capabilities.ItemStackCapabili
 import java.util.function.Supplier;
 
 @Mixin(ItemStack.class)
-public abstract class ItemStackMixin implements CapabilityProviderExtension, ItemStackCapabilityProviderImpl, ItemStackExtensions, io.github.fabricators_of_create.porting_lib.tool.extensions.ItemStackExtensions, InitializableCapabilityExtension<ItemStack> {
+public abstract class ItemStackMixin implements CapabilityProviderExtension, ItemStackCapabilityProviderImpl, ItemStackExtensions, InitializableCapabilityExtension<ItemStack> {
 	@Shadow
 	public abstract Item getItem();
 
-	private CompoundTag capNBT;
+	@Unique private CompoundTag capNBT;
 
-	private final CapabilityProviderWorkaround<ItemStack> workaround = new CapabilityProviderWorkaround<>(ItemStack.class, (ItemStack) (Object) this);
+	@Unique private final CapabilityProviderWorkaround<ItemStack> workaround = new CapabilityProviderWorkaround<>(ItemStack.class, (ItemStack) (Object) this);
 
 	@Override
 	public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
@@ -83,7 +84,14 @@ public abstract class ItemStackMixin implements CapabilityProviderExtension, Ite
 
 	@Override
 	public void initCapabilities() {
-		this.gatherCapabilities(() -> this.getItem().initCapabilities((ItemStack) (Object) this, this.capNBT));
+		this.gatherCapabilities(() -> {
+			var item = this.getItem();
+
+			if (item == null)
+				return null;
+
+			return item.initCapabilities((ItemStack) (Object) this, this.capNBT);
+		});
 		if (this.capNBT != null)
 			this.deserializeCaps(this.capNBT);
 	}

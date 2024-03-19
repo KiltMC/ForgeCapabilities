@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import xyz.bluspring.forgecapabilities.capabilities.Capability;
 
-public interface ItemStackCapabilityProviderImpl extends ICapabilityProviderImplWorkaround<ItemStack>, ItemStackExtensions, io.github.fabricators_of_create.porting_lib.tool.extensions.ItemStackExtensions {
+public interface ItemStackCapabilityProviderImpl extends ICapabilityProviderImplWorkaround<ItemStack>, ItemStackExtensions {
     @Override
     default @NotNull <T> LazyOptional<T> getCapability(final @NotNull Capability<T> cap, final @Nullable Direction side) {
         throw new IllegalStateException("bruh");

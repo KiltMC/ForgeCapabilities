@@ -7,6 +7,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import xyz.bluspring.forgecapabilities.capabilities.*;
 import xyz.bluspring.forgecapabilities.extensions.capabilities.CapabilityProviderExtension;
 import xyz.bluspring.forgecapabilities.extensions.capabilities.LevelCapabilityProviderImpl;
@@ -15,7 +16,7 @@ import java.util.function.Supplier;
 
 @Mixin(Level.class)
 public abstract class LevelMixin implements CapabilityProviderExtension, LevelCapabilityProviderImpl, LevelExtensions, io.github.fabricators_of_create.porting_lib.entity.extensions.LevelExtensions {
-	private final CapabilityProviderWorkaround<Level> workaround = new CapabilityProviderWorkaround<>(Level.class, (Level) (Object) this);
+	@Unique private final CapabilityProviderWorkaround<Level> workaround = new CapabilityProviderWorkaround<>(Level.class, (Level) (Object) this);
 
 	@Override
 	public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
