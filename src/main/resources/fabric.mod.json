@@ -39,7 +39,6 @@
     }
   },
   "depends": {
-    "fabric-api": "*",
-    "porting_lib": "*"
+    "fabric-api": "*"
   }
 }

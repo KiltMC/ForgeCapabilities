@@ -53,7 +53,7 @@ dependencies {
         modApi(include("io.github.fabricators_of_create.Porting-Lib:${module}:2.1.1282+1.19.2"))
     }
 
-    include modApi('teamreborn:energy:3.0.0') {
+    include modApi('teamreborn:energy:2.3.0') {
         transitive = false
     }
 }
