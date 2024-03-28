@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -27,6 +28,7 @@ public abstract class ItemStackMixin implements CapabilityProviderExtension, Ite
 	@Shadow
 	public abstract Item getItem();
 
+	@Shadow @Final @Deprecated private Item item;
 	@Unique private CompoundTag capNBT;
 
 	@Unique
@@ -86,7 +88,10 @@ public abstract class ItemStackMixin implements CapabilityProviderExtension, Ite
 	@Override
 	public void initCapabilities() {
 		this.gatherCapabilities(() -> {
-			var item = this.getItem();
+			var item = this.item;
+
+			if (item == null)
+				item = this.getItem();
 
 			if (item == null)
 				return null;
